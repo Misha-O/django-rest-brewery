@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'brewery_app/styles/style.css' %}">
+
+    <title>Awesome Brewery Detail</title>
+</head>
+<body>
+    <h2>Details for {{beer_list.name}} {{beer_list.alcohol_percentage}}%</h2>
+    <h3>It was made and produced by {{ beer_list.brewery_name }}. Purchase price {{beer_list.price}} €</h3>
+    <h3>Hops:</h3>
+    {% if beer_list.hop.all %}
+        <ul>
+            {% for hop in beer_list.hop.all %}
+            <li>
+                {{ hop.name }}
+            </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>There are no hops ingredients.</p>
+    {% endif %}
+    <h3>Malts:</h3>
+    {% if beer_list.malt.all %}
+        <ul>
+            {% for malt in beer_list.malt.all %}
+            <li>
+                {{ malt.name }}
+            </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>There are no malts ingredients.</p>
+    {% endif %}
+
+    <a href="/">Go back to list</a>
+</body>
+</html>
